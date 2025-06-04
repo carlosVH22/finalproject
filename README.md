@@ -241,3 +241,48 @@ Where:
 
 
 > ⚠️ The unusually high MAPE highlights the presence of extreme deviations in actual values, possibly due to outliers or unexpected visitor behavior.
+
+
+## 📈 5. Strategies to Double Restaurant Visitors in Six Months (Japan Context)
+
+Based on the data and visitor patterns observed in Japan:
+
+### Key Insights:
+- Strong weekly seasonality with peaks on weekends and holidays.
+- Irregular visitor trends possibly linked to holidays and special events.
+- Different restaurant genres and areas show varying levels of demand.
+
+### Proposed Strategies:
+
+1. **Optimize operating hours and promotions:**  
+   Target low-traffic weekdays with special offers (“Weekday sushi discount”), and extend hours on weekends to capture more customers.
+
+2. **Focus on popular genres and high-traffic areas:**  
+   Promote Japanese, Korean, and ramen restaurants in busy areas, similar to Tokyo’s districts like Shibuya and Shinjuku.
+
+3. **Leverage food delivery platforms:**  
+   Partner with services like Uber Eats or Demae-can to reach more customers, offering discounts for new users or frequent orders.
+
+4. **Holiday and weather-based marketing:**  
+   Use the `holiday_flg` to plan major promotions on holidays. Incorporate weather data (if available) to activate campaigns on rainy or cold days.
+
+5. **Host seasonal and themed events:**  
+   Festivals, special menu weeks, and influencer collaborations can drive visitor engagement and repeat business.
+
+---
+
+## 🔎 6. Additional Data to Collect for CDMX Restaurants (Mexico Context)
+
+If these restaurants were located in Mexico City (CDMX), integrating these additional datasets would help increase visitors and improve insights:
+
+| Data Source                              | Purpose                                                                 |
+|-----------------------------------------|-------------------------------------------------------------------------|
+| **Historical weather data**              | Understand impact of weather on visitor traffic and tailor promotions.  |
+| **Local event schedules (concerts, fairs)** | Align marketing with city events to boost traffic.                      |
+| **Socioeconomic data by neighborhood**  | Adjust pricing and promotions based on area income levels.              |
+| **Traffic and public transit info**     | Assess accessibility and optimize location or delivery strategies.      |
+| **Customer reviews and ratings**        | Identify strengths and weaknesses to improve service and satisfaction.  |
+| **Competitor presence data**             | Find underserved areas or avoid saturated zones.                        |
+| **Population mobility and foot traffic**| Plan restaurant locations or temporary pop-ups effectively.             |
+| **Customer information (frequency, monetary value, preferences)** | Segment customers for personalized marketing and loyalty programs.      |
+
