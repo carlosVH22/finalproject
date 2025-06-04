@@ -170,14 +170,15 @@ ORDER BY visit_date;
 After completing the SQL-based exploratory analysis, a time series forecasting model was developed using Python to predict future restaurant reservations based on historical patterns.
 
 ---
-### 🧩 Original Series – Restaurant Visitors (Top Plot)
+### 🧩 Original Series – Restaurant Visitors
 
 - The time series shows **missing data intervals**, which limit the ability to extract continuous trends.
 - To enable full analysis, **data imputation** was required to fill these gaps.
 
+![Forecast plot](imagenes-datos faltantes.jpeg)
 ---
 
-### 🔧 Visitor Imputation (Bottom Plot)
+### 🔧 Visitor Imputation
 
 - A **linear regression** was fitted to the complete series to estimate the general trend.
 - For missing days, the number of visitors was **simulated using a normal distribution**:
