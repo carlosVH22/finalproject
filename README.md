@@ -178,7 +178,9 @@ bi-challenge-sql/
 * **Data Analysis:** Developed advanced SQL queries using CTEs, window functions, date functions, and aggregations.
 * **Business Relevance:** Provided insights on top-performing restaurants, ideal visiting days, and growth trends.
 
-## 🔮 Time Series Forecasting – SARIMAX Model
+
+
+# 🔮 Time Series Forecasting – SARIMAX Model
 
 After completing the SQL-based exploratory analysis, a time series forecasting model was developed using Python to predict future restaurant reservations based on historical patterns.
 
