@@ -234,18 +234,6 @@ These metrics show the model's ability to approximate the real number of visitor
 
 Despite imperfections in residual behavior, the model captures key patterns and seasonality effectively.
 
----
-
-### 📈 Visualization
-
-The following plot illustrates:
-
-- Training data (blue)
-- Actual test data (orange)
-- Forecasted values (green dashed)
-- 95% confidence interval (shaded gray)
-
-![Forecast plot](path-to-forecast-image.png)
 
 ---
 
@@ -264,5 +252,5 @@ Data cleaning and preparation steps included:
 
 This time series model provides a reliable short-term forecasting tool for restaurant visitor behavior, complementing the SQL analysis. Together, both approaches offer a robust foundation for data-driven decision-making in hospitality demand forecasting.
 
-> ✅ The full Python code and forecast script are available in the `forecasting/` folder.
+> ✅ The full Python code and forecast script are available.
 
