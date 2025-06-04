@@ -255,13 +255,13 @@ Based on the data and visitor patterns observed in Japan:
 ### Proposed Strategies:
 
 1. **Optimize operating hours and promotions:**  
-   Target low-traffic weekdays with special offers (“Weekday sushi discount”), and extend hours on weekends to capture more customers.
+   Target low-traffic weekdays with special offers (“Wednesday 2x1”), and extend hours on weekends to capture more customers.
 
 2. **Focus on popular genres and high-traffic areas:**  
    Promote Japanese, Korean, and ramen restaurants in busy areas, similar to Tokyo’s districts like Shibuya and Shinjuku.
 
 3. **Leverage food delivery platforms:**  
-   Partner with services like Uber Eats or Demae-can to reach more customers, offering discounts for new users or frequent orders.
+   Partner with services like Uber Eats (jeje) to reach more customers, offering discounts for new users or frequent orders.
 
 4. **Holiday and weather-based marketing:**  
    Use the `holiday_flg` to plan major promotions on holidays. Incorporate weather data (if available) to activate campaigns on rainy or cold days.
@@ -286,3 +286,48 @@ If these restaurants were located in Mexico City (CDMX), integrating these addit
 | **Population mobility and foot traffic**| Plan restaurant locations or temporary pop-ups effectively.             |
 | **Customer information (frequency, monetary value, preferences)** | Segment customers for personalized marketing and loyalty programs.      |
 
+
+## 7. Channels to Download the DiDi Rides App and How to Estimate Quality and Cost
+
+### Potential Download Channels
+
+1. **Organic**
+   - Competititors Users
+   - Word of mouth
+
+2. **Paid Digital Advertising**
+   - Social media ads (Facebook, Instagram, TikTok, Whatsapp)
+   - Search engine ads (Google Ads, Bing Ads)
+   - App install campaigns (Apple Search Ads, Google UAC)
+   - Influencer marketing campaigns
+
+3. **Partnerships & Promotions**
+   - In-app cross-promotions (partner apps)
+   - Referral programs incentivizing users to invite friends
+   - Partnerships with mobile carriers or device manufacturers
+
+4. **Offline Channels**
+   - QR codes in physical locations (taxi stands, malls)
+   - Outdoor advertising with QR codes (billboards, posters)
+   - Events and sponsorships
+
+---
+
+### Estimating Quality and Cost of Each Channel
+
+| Channel Type            | Cost Metrics                                 | Quality Metrics                                | Notes                                         |
+|------------------------|----------------------------------------------|-----------------------------------------------|-----------------------------------------------|
+| **Organic** | Free or low cost                      | First Trip-to-active-user rate, retention rate, churn rate | Depends on how atractive you are to PAXs       |
+| **Paid Digital Ads**    | Cost Per Install, Cost Per Click, Cost Per Mille | Conversion rate, user engagement, retention | Highly measurable and targetable               |
+| **Partnerships & Referrals** | Cost per referral or fixed partnership fees | Referral conversion rates, retention, virality | Often higher quality users due to trust factor |
+| **Offline Channels**    | Production and placement costs, event sponsorship fees | QR scan rate, installs from QR, retention     | Harder to make but good for brand awareness|
+
+---
+
+### Methodology to Estimate
+
+- Track installs by source using UTM parameters and attribution tools.
+- Measure retention and engagement (Day 1, Day 7, Day 30 retention) by channel.
+- Calculate Customer Acquisition Cost: total spend divided by installs or paying users.
+- Calculate Lifetime Value: average revenue generated per user acquired from each channel.
+- Evaluate ROI by comparing LTV against CAC to determine channel efficiency.
