@@ -154,21 +154,6 @@ ORDER BY visit_date;
 
 > ⚠️ **Key Insight:** Since the data was initially at the hour level, grouping by day and restaurant was crucial to derive accurate, actionable insights.
 
----
-
-## 📁 Repository Structure
-
-```
-bi-challenge-sql/
-├── README.md
-├── sql/
-│   ├── create_tables.sql
-│   ├── clean_checks.sql
-│   ├── query_top5_restaurants.sql
-│   ├── query_best_day.sql
-│   ├── query_wow_growth.sql
-│   └── visual_trend.sql
-```
 
 ---
 
