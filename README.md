@@ -175,7 +175,7 @@ After completing the SQL-based exploratory analysis, a time series forecasting m
 - The time series shows **missing data intervals**, which limit the ability to extract continuous trends.
 - To enable full analysis, **data imputation** was required to fill these gaps.
 
-![Forecast plot](Imagenes/datos faltantes.jpeg)
+![Forecast plot](Imagenes/datos_faltantes.jpeg)
 ---
 
 ### 🔧 Visitor Imputation
