@@ -1,3 +1,4 @@
+-- Creation of tables
 USE bi_challenge;
 
 CREATE TABLE restaurants_visitors (
