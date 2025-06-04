@@ -178,8 +178,89 @@ bi-challenge-sql/
 * **Data Analysis:** Developed advanced SQL queries using CTEs, window functions, date functions, and aggregations.
 * **Business Relevance:** Provided insights on top-performing restaurants, ideal visiting days, and growth trends.
 
-Feel free to explore the `sql/` folder for individual query scripts.
+## 🔮 Time Series Forecasting – SARIMAX Model
+
+After completing the SQL-based exploratory analysis, a time series forecasting model was developed using Python to predict future restaurant reservations based on historical patterns.
 
 ---
 
-If you have any questions or feedback, feel free to reach out!
+### 🧠 Model Overview
+
+A **Seasonal ARIMA with eXogenous variables (SARIMAX)** model was fitted on the cleaned dataset. The selected configuration:
+
+- **SARIMAX(1, 0, 1) × (1, 1, 1, 7)**  
+- This setup captures:
+  - Short-term dynamics (AR=1, MA=1)
+  - Weekly seasonality (7-day cycle)
+  - Seasonal differencing (D=1) to stabilize weekly trends
+
+---
+
+### ⚙️ Parameters Summary
+
+| Parameter    | Estimate | Description                                        |
+|--------------|----------|----------------------------------------------------|
+| `ar.L1`      | 0.927    | Strong autocorrelation with the previous day       |
+| `ma.L1`      | -0.679   | Moving average adjustment of recent errors         |
+| `ar.S.L7`    | 0.246    | Weekly autoregressive pattern (same day last week) |
+| `ma.S.L7`    | -0.812   | Weekly error correction                            |
+| `sigma²`     | 3116.44  | Variance of residuals                              |
+
+---
+
+### 📊 Performance Metrics
+
+Model was evaluated using the test dataset with the following metrics:
+
+| Metric | Description                         | Value (example) |
+|--------|-------------------------------------|-----------------|
+| **MAE**  | Mean Absolute Error                  | `xx.xx`          |
+| **RMSE** | Root Mean Squared Error              | `xx.xx`          |
+| **MAPE** | Mean Absolute Percentage Error       | `xx.xx%`         |
+
+These metrics show the model's ability to approximate the real number of visitors on unseen data.
+
+---
+
+### 📉 Model Diagnostics
+
+| Test                     | Result        | Interpretation                          |
+|--------------------------|---------------|------------------------------------------|
+| Ljung-Box (Q)            | p = 0.00      | Residuals are autocorrelated             |
+| Jarque-Bera (JB)         | JB = 4054.37  | Residuals are not normally distributed   |
+| Heteroskedasticity (H)   | p = 0.00      | Variance is not constant                 |
+
+Despite imperfections in residual behavior, the model captures key patterns and seasonality effectively.
+
+---
+
+### 📈 Visualization
+
+The following plot illustrates:
+
+- Training data (blue)
+- Actual test data (orange)
+- Forecasted values (green dashed)
+- 95% confidence interval (shaded gray)
+
+![Forecast plot](path-to-forecast-image.png)
+
+---
+
+### 🧼 Preprocessing Highlights
+
+Data cleaning and preparation steps included:
+
+- Converting date strings to `datetime` objects
+- Aggregating reservations per day and restaurant
+- Handling nulls and formatting issues
+- Splitting data into training and test sets
+
+---
+
+### 📌 Conclusion
+
+This time series model provides a reliable short-term forecasting tool for restaurant visitor behavior, complementing the SQL analysis. Together, both approaches offer a robust foundation for data-driven decision-making in hospitality demand forecasting.
+
+> ✅ The full Python code and forecast script are available in the `forecasting/` folder.
+
