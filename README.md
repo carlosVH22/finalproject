@@ -170,72 +170,64 @@ ORDER BY visit_date;
 After completing the SQL-based exploratory analysis, a time series forecasting model was developed using Python to predict future restaurant reservations based on historical patterns.
 
 ---
+### 🧩 Original Series – Restaurant Visitors (Top Plot)
 
-### 🧠 Model Overview
-
-A **Seasonal ARIMA with eXogenous variables (SARIMAX)** model was fitted on the cleaned dataset. The selected configuration:
-
-- **SARIMAX(1, 0, 1) × (1, 1, 1, 7)**  
-- This setup captures:
-  - Short-term dynamics (AR=1, MA=1)
-  - Weekly seasonality (7-day cycle)
-  - Seasonal differencing (D=1) to stabilize weekly trends
+- The time series shows **missing data intervals**, which limit the ability to extract continuous trends.
+- To enable full analysis, **data imputation** was required to fill these gaps.
 
 ---
 
-### ⚙️ Parameters Summary
+### 🔧 Visitor Imputation (Bottom Plot)
 
-| Parameter    | Estimate | Description                                        |
-|--------------|----------|----------------------------------------------------|
-| `ar.L1`      | 0.927    | Strong autocorrelation with the previous day       |
-| `ma.L1`      | -0.679   | Moving average adjustment of recent errors         |
-| `ar.S.L7`    | 0.246    | Weekly autoregressive pattern (same day last week) |
-| `ma.S.L7`    | -0.812   | Weekly error correction                            |
-| `sigma²`     | 3116.44  | Variance of residuals                              |
+- A **linear regression** was fitted to the complete series to estimate the general trend.
+- For missing days, the number of visitors was **simulated using a normal distribution**:
 
----
+  - **μ (mean):** Estimated trend value at time *t*  
+  - **σ (std dev):** Historical standard deviation of the series
 
-### 📊 Performance Metrics
-
-Model was evaluated using the test dataset with the following metrics:
-
-| Metric | Description                         | Value (example) |
-|--------|-------------------------------------|-----------------|
-| **MAE**  | Mean Absolute Error                  | `xx.xx`          |
-| **RMSE** | Root Mean Squared Error              | `xx.xx`          |
-| **MAPE** | Mean Absolute Percentage Error       | `xx.xx%`         |
-
-These metrics show the model's ability to approximate the real number of visitors on unseen data.
+> This approach generates **stochastic imputations** that are coherent with the observed behavior and variability.
 
 ---
 
-### 📉 Model Diagnostics
+### 🔍 Time Series Decomposition – Additive Model
 
-| Test                     | Result        | Interpretation                          |
-|--------------------------|---------------|------------------------------------------|
-| Ljung-Box (Q)            | p = 0.00      | Residuals are autocorrelated             |
-| Jarque-Bera (JB)         | JB = 4054.37  | Residuals are not normally distributed   |
-| Heteroskedasticity (H)   | p = 0.00      | Variance is not constant                 |
+The additive decomposition assumes that the observed series can be expressed as:
 
-Despite imperfections in residual behavior, the model captures key patterns and seasonality effectively.
+**Yₜ = Tₜ + Sₜ + Rₜ**
 
+Where:
+- **Tₜ (Trend):** Long-term progression of the series
+- **Sₜ (Seasonal):** Repeating patterns over a fixed period (weekly seasonality in this case)
+- **Rₜ (Residual):** Irregular variations not explained by trend or seasonality
 
----
-
-### 🧼 Preprocessing Highlights
-
-Data cleaning and preparation steps included:
-
-- Converting date strings to `datetime` objects
-- Aggregating reservations per day and restaurant
-- Handling nulls and formatting issues
-- Splitting data into training and test sets
+#### Components from the Plot:
+- **Original series (`reserve_visitors`):** Total number of visitors over time
+- **Trend:** Highlights long-term increases or decreases
+- **Seasonality:** Captures weekly visitor patterns
+- **Residuals:** Random noise or outliers (notable irregularities appeared in late 2016 and early 2017)
 
 ---
 
-### 📌 Conclusion
+### 🔮 Forecasting with SARIMAX Model
 
-This time series model provides a reliable short-term forecasting tool for restaurant visitor behavior, complementing the SQL analysis. Together, both approaches offer a robust foundation for data-driven decision-making in hospitality demand forecasting.
+- Several configurations were tested; the best-performing model was:
+  
+  **SARIMAX(1, 0, 1) × (1, 1, 1, 7)**
 
-> ✅ The full Python code and forecast script are available.
+- This model effectively captures **cyclical and seasonal structures**, forecasting 180 days ahead.
+- **Wide confidence intervals** indicate increasing uncertainty as the forecast horizon extends.
+- Toward the end of the observed series, **irregular patterns and potential outliers** emerged, likely tied to unusual events or data entry issues.
 
+---
+
+### ✅ Model Evaluation – Backtesting
+
+- A **30-day backtesting window** was used prior to the forecast period.
+- The model's predictions were compared to actual values, revealing challenges in anticipating irregular spikes or anomalies.
+
+#### Performance Metrics on Test Set:
+- **MAE:** 110.62  
+- **RMSE:** 134.09  
+- **MAPE:** 1388.71%
+
+> ⚠️ The unusually high MAPE highlights the presence of extreme deviations in actual values, possibly due to outliers or unexpected visitor behavior.
