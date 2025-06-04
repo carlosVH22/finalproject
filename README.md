@@ -188,6 +188,7 @@ After completing the SQL-based exploratory analysis, a time series forecasting m
 
 > This approach generates **stochastic imputations** that are coherent with the observed behavior and variability.
 
+![Forecast plot](Imagenes/simulación.jpeg)
 ---
 
 ### 🔍 Time Series Decomposition – Additive Model
@@ -200,6 +201,8 @@ Where:
 - **Tₜ (Trend):** Long-term progression of the series
 - **Sₜ (Seasonal):** Repeating patterns over a fixed period (weekly seasonality in this case)
 - **Rₜ (Residual):** Irregular variations not explained by trend or seasonality
+
+![Forecast plot](Imagenes/descomposición.jpeg)
 
 #### Components from the Plot:
 - **Original series (`reserve_visitors`):** Total number of visitors over time
@@ -219,6 +222,8 @@ Where:
 - **Wide confidence intervals** indicate increasing uncertainty as the forecast horizon extends.
 - Toward the end of the observed series, **irregular patterns and potential outliers** emerged, likely tied to unusual events or data entry issues.
 
+![Forecast plot](Imagenes/sarimax.jpeg)
+
 ---
 
 ### ✅ Model Evaluation – Backtesting
@@ -226,9 +231,13 @@ Where:
 - A **30-day backtesting window** was used prior to the forecast period.
 - The model's predictions were compared to actual values, revealing challenges in anticipating irregular spikes or anomalies.
 
+![Forecast plot](Imagenes/back_testing.jpeg)
+
 #### Performance Metrics on Test Set:
 - **MAE:** 110.62  
 - **RMSE:** 134.09  
 - **MAPE:** 1388.71%
+
+
 
 > ⚠️ The unusually high MAPE highlights the presence of extreme deviations in actual values, possibly due to outliers or unexpected visitor behavior.
