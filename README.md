@@ -1,6 +1,7 @@
 # BI Challenge - SQL Focused Analysis
 
 This repository contains my SQL-based solution to a data analytics challenge involving restaurant reservations and visits in Japan. The goal was to extract insights about visitor behavior using cleaned CSV datasets and structured SQL queries.
+**You can find the complete Script for the queries in the bi_challenge_sql file
 
 ---
 
