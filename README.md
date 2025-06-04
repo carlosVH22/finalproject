@@ -331,3 +331,142 @@ If these restaurants were located in Mexico City (CDMX), integrating these addit
 - Calculate Customer Acquisition Cost: total spend divided by installs or paying users.
 - Calculate Lifetime Value: average revenue generated per user acquired from each channel.
 - Evaluate ROI by comparing LTV against CAC to determine channel efficiency.
+
+- 
+
+- ## 🧠 Predictive Model: Churn Risk for DiDi Rides Users
+
+**Target Variable**: `churn_user`  
+- Binary: 1 if user had no trips in the last 28 days, 0 otherwise.
+
+  1.- Proposed Modeling Approach
+    Classification Model (Clustering users):
+    Use a neural classifier to segment users into churn risk levels: low, medium, high.
+    This provides interpretability and allows prioritization.
+
+  2.-Regression Model (Churn probability):
+    Train a neural regression model to estimate the churn probability based on behavioral and contextual features.
+
+---
+
+### 🔍 Feature Engineering
+
+#### 📱 User Activity & Engagement
+
+- `trip_last_7_days`, `14_days`, `21_days`, `28_days`, `30_days` — Binary flag for users retention.
+- `trip_count_total` — Total number of rides historically.
+- `trip_count_last_4_weeks` — Total rides in last 28 days.
+- `avg_trips_per_day` — Average daily rides.
+- `trip_frequency` — Normalized frequency.
+- `days_since_last_trip` — Recency.
+- `is_first_trip_user` — Binary flag for users with only 1 trip.
+
+#### 💳 Payments & Discounts
+
+- `discounted_trips_count` — Trips that used coupons or codes.
+- `non_discounted_trips_count`
+- `promo_code_usage_rate` — % of total trips that used promos.
+- `avg_fare_amount`
+- `total_fare_spent`
+
+#### ⏰ Time Patterns
+
+- `ride_time_peak_hours_ratio` — % of rides during peak hours.
+- `most_common_ride_hour` — Hour of the day with most rides.
+- `rides_during_paycheck_days` — Flag for trips near paycheck days.
+- `rides_during_weekend` — % of trips on weekends.
+- `seasonality_flag` — Temporal season tagging (back to school, summer, holy week).
+
+#### 📍 Location & Demand Context
+
+- `ride_distance_avg`
+- `preferred_service_type` — Type of ride: Express, PTP, etc.
+
+#### 👁️ App Usage & Intent Signals
+
+- `app_opens_last_30_days`
+- `avg_session_time`
+- `EB_last_30_days` — “Eyeballs”: how many times user requested a price.
+- `calls_count` — How many times user called to book a ride.
+- `ECR` (Eyeball-to-Call Ratio)
+- `ETR` (Eyeball-to-Call Ratio)
+- `CR` (Completion Rate): % of requested rides that were successfully completed.
+
+#### 🌟 User Quality & Feedback
+
+- `avg_ride_rating` — Average rating given to drivers.
+- `low_rating_given_flag` — Binary: 1 if user rated any ride below 3 stars.
+- `user_rating` — Rating by the user from drivers.
+
+---
+## 🔍 Feature Validation & Model Stability
+
+Before deploying the predictive model for churn detection, we must ensure that the selected 
+features are **relevant, interpretable** and that the model is **stable and reliable** over time. 
+
+---
+
+### 🧪 Feature-Level Analysis
+
+Each feature must be evaluated to determine:
+
+- **Correlation with churn** (positive, negative, or neutral)
+- **Predictive power** (impact on the final prediction)
+- **Interpretability** (how it aligns with real-world user behavior)
+
+#### 🔹 Correlation Testing
+- For **numerical variables** (e.g., number of trips, ECR, CR):
+  - Pearson or Spearman correlation with churn label.
+- For **categorical or binary variables** (e.g., `has_trip_last_7_days`, `rides_on_paycheck`):
+  - Chi-square test or ANOVA to assess dependence on churn.
+
+This helps identify features that are **positively correlated** (e.g., fewer trips → higher churn risk) or **negatively correlated** (e.g., recent rides → lower churn).
+
+
+### 🎯 Model Testing & Validation
+
+Once the feature set is defined, the model’s performance should be validated across time and user segments:
+
+#### ✅ Cross-Validation
+- Apply **K-Fold Cross-Validation**:
+  - Ensures the model performs consistently across different data splits.
+  - Reduces the risk of **overfitting to recent churn patterns**.
+
+#### 📊 Backtesting with Historical Simulation
+- Simulate model behavior using **historical user data**:
+  - For example, train using January-March and test on April.
+  - Repeat across different months to validate temporal robustness.
+- Allows comparison of:
+  - **Predicted churn probabilities** vs **actual churns**
+  - Precision of early warning indicators
+
+#### 📏 Performance Metrics
+To evaluate and compare different models:
+
+- **Classification Metrics**:
+  - Accuracy, Precision, Recall, F1-Score
+  - ROC-AUC: Overall classification ability
+  - PR-AUC: Better for imbalanced classes like churn
+
+- **Calibration Curve**:
+  - Check whether predicted probabilities align with observed outcomes
+
+- **Confusion Matrix**:
+  - Understand False Positives vs False Negatives — critical for targeting users.
+
+---
+
+
+This structured approach helps ensure that:
+✅ Only valuable features are included  
+✅ The model can generalize to new data  
+✅ Predictions can be explained and trusted  
+✅ Business teams can act on model outputs with confidence
+
+
+### 📈 Benefits
+
+- Early detection of users likely to churn
+- Personalized retention strategies
+- Improved campaign ROI
+
